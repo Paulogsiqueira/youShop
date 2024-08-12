@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import ProductCard from '@/components/Cards/ProductCard.vue';
+import ProductCard from '@/components/Cards/productCard.vue';
 
 const productsList = ref([]);
 
