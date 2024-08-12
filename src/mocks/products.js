@@ -1,0 +1,110 @@
+export const products = [
+  {
+    name: "Teclado Mecânico",
+    description: "Um teclado mecânico de alta qualidade com iluminação RGB.",
+    img: "/teclado/teclado1.jpg",
+    price: "99.99",
+    code: 87865416,
+  },
+  {
+    name: "Mouse para Jogos",
+    description:
+      "Um mouse ergonômico para jogos com botões personalizáveis e configurações de DPI.",
+    img: "/mouse/mouse1.jpg",
+    price: "49.99",
+    code: 18575124,
+  },
+  {
+    name: "Monitor de 27 polegadas",
+    description: "Um monitor 4K de 27 polegadas com tecnologia HDR e FreeSync.",
+    img: "/monitor/monitor1.jpg",
+    price: "299.99",
+    code: 81231478,
+  },
+  {
+    name: "Webcam",
+    description: "Uma webcam HD 1080p com microfone embutido e auto-foco.",
+    img: "/webcam/webcam1.jpg",
+    price: "59.99",
+    code: 82346234,
+  },
+  {
+    name: "SSD Externo",
+    description:
+      "Um SSD externo de 1TB com conexão USB-C para transferência rápida de dados.",
+    img: "/ssd/ssd1.jpg",
+    price: "129.99",
+    code: 87543447,
+  },
+  {
+    name: "Headset para Jogos",
+    description:
+      "Um confortável headset para jogos com som surround e microfone com cancelamento de ruído.",
+    img: "/headset/headset1.jpg",
+    price: "79.99",
+    code: 87123541,
+  },
+];
+
+export const fullProducts = {
+  87865416: {
+    name: "Teclado Mecânico",
+    description: "Um teclado mecânico de alta qualidade com iluminação RGB. Ideal para gamers e profissionais que buscam um desempenho superior e uma experiência de digitação confortável.",
+    img: "/teclado/teclado1.jpg",
+    price: "99.99",
+    paymentMethods: ["Pix", "Boleto", "Cartão de Crédito"],
+    installmentsNumber: 5,
+    anothersImg: ["/teclado/teclado1.jpg", "/teclado/teclado2.jpg", "/teclado/teclado3.jpg", "/teclado/teclado4.jpg"],
+    brand: "Corsair",
+  },
+  18575124: {
+    name: "Mouse para Jogos",
+    description: "Um mouse ergonômico para jogos com botões personalizáveis e configurações de DPI ajustáveis. Perfeito para quem precisa de precisão e controle em jogos competitivos.",
+    img: "/mouse/mouse1.jpg",
+    price: "49.99",
+    paymentMethods: ["Pix", "Boleto", "Cartão de Crédito"],
+    installmentsNumber: 5,
+    anothersImg: ["/mouse/mouse1.jpg", "/mouse/mouse2.jpg", "/mouse/mouse3.jpg", "/mouse/mouse4.jpg"],
+    brand: "Razer",
+  },
+  81231478: {
+    name: "Monitor de 27 polegadas",
+    description: "Um monitor 4K de 27 polegadas com tecnologia HDR e FreeSync. Proporciona uma experiência visual impressionante com cores vivas e imagens nítidas, ideal para jogos e trabalho criativo.",
+    img: "/monitor/monitor1.jpg",
+    price: "299.99",
+    paymentMethods: ["Pix", "Boleto", "Cartão de Crédito"],
+    installmentsNumber: 5,
+    anothersImg: ["/monitor/monitor1.jpg", "/monitor/monitor2.jpg", "/monitor/monitor3.jpg", "/monitor/monitor4.jpg"],
+    brand: "Dell",
+  },
+  82346234: {
+    name: "Webcam",
+    description: "Esta webcam de alta definição é ideal para videoconferências, transmissões ao vivo e gravações de alta qualidade. Com uma resolução de 1080p, ela oferece imagens nítidas e claras, capturando detalhes com precisão para uma experiência visual imersiva. A lente de alta definição proporciona imagens vibrantes e realistas.",
+    img: "/webcam/webcam1.jpg",
+    price: "59.99",
+    brand: "Pichau",
+    paymentMethods: ["Pix", "Boleto", "Cartão de Crédito"],
+    installmentsNumber: 5,
+    anothersImg: ["/webcam/webcam1.jpg", "/webcam/webcam2.jpg", "/webcam/webcam3.jpg", "/webcam/webcam4.jpg"],
+  },
+  87543447: {
+    name: "SSD Externo",
+    description: "Um SSD externo de 1TB com conexão USB-C para transferência rápida de dados. Ideal para quem precisa de alta capacidade de armazenamento e velocidade de transferência para gerenciar grandes volumes de arquivos.",
+    img: "/ssd/ssd1.jpg",
+    price: "129.99",
+    paymentMethods: ["Pix", "Boleto", "Cartão de Crédito"],
+    installmentsNumber: 5,
+    anothersImg: ["/ssd/ssd1.jpg", "/ssd/ssd2.jpg", "/ssd/ssd3.jpg", "/ssd/ssd4.jpg"],
+    brand: "SanDisk",
+  },
+  87123541: {
+    name: "Headset para Jogos",
+    description: "Um confortável headset para jogos com som surround e microfone com cancelamento de ruído. Proporciona uma experiência de áudio imersiva e comunicação clara durante as sessões de jogo, ideal para longas horas de uso.",
+    img: "/headset/headset1.jpg",
+    price: "79.99",
+    paymentMethods: ["Pix", "Boleto", "Cartão de Crédito"],
+    installmentsNumber: 5,
+    anothersImg: ["/headset/headset1.jpg", "/headset/headset2.jpg", "/headset/headset3.jpg", "/headset/headset4.jpg"],
+    brand: "Logitech",
+  }
+}
