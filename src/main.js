@@ -21,7 +21,14 @@ const vuetify = createVuetify({
     defaultSet: 'mdi'
   },
 })
-const app = await workerStart().then(() => createApp(App));
+
+async function initApp() {
+  await workerStart();
+  const app = createApp(App);
+  app.use(router).use(store).use(vuetify).mount('#app');
+}
+
+initApp();
 
 
-app.use(router).use(store).use(vuetify).mount('#app');
+
