@@ -12,7 +12,6 @@
 import PurchaseResume from "../components/purchaseResume.vue";
 </script>
 <style scoped>
-
 .resume-card {
   width: 60%;
 }
@@ -27,7 +26,6 @@ import PurchaseResume from "../components/purchaseResume.vue";
   color: #71c5a7;
   margin-bottom: 50px;
 }
-
 
 @media (max-width: 860px) {
   .cart-card {

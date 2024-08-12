@@ -21,7 +21,7 @@ export const handlers = [
       const cpf = requestBody.cpf;
 
       if (cpf == "00000000000") {
-        return HttpResponse.json({ error: "CPF inválido" });
+        return HttpResponse.json({ error: "CPF_INVALIDO" });
       }
 
       const order = {

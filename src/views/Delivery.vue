@@ -61,7 +61,7 @@ import ResumeCard from "@/components/Cards/resumeCard.vue";
 
   .cart-card {
     width: 60%;
-    margin-left:2%;
+    margin-left: 2%;
     margin-top: 4%;
   }
 

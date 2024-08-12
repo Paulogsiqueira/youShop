@@ -33,6 +33,10 @@ const routes = [
     name: 'PurchaseCompleted',
     component: PurchaseCompleted,
   },
+  {
+    path: '/:pathMatch(.*)*', 
+    redirect: '/', 
+  }
 ];
 
 const router = createRouter({
@@ -42,32 +46,17 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
-  if (to.name === 'PurchaseCompleted' && (store.state.productDetails.name === "" && store.state.purchaseDetails.address === "" && store.state.paymentDetails.method === "")) {
+  const productDetailsEmpty = store.state.productDetails.name === "";
+  const purchaseDetailsEmpty = store.state.purchaseDetails.address === "";
+  const paymentDetailsEmpty = store.state.paymentDetails.method === "";
+
+  if (to.name === 'PurchaseCompleted' && (productDetailsEmpty && purchaseDetailsEmpty && paymentDetailsEmpty)) {
     next('/');
-  } else {
-    next();
-  }
-});
-
-
-router.beforeEach((to, from, next) => {
-  if (to.name === 'Payment' && (store.state.productDetails.name === "" && store.state.purchaseDetails.address === "")) {
+  } else if (to.name === 'Payment' && (productDetailsEmpty && purchaseDetailsEmpty)) {
     next('/');
-  } else {
-    next();
-  }
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.name === 'Delivery' && store.state.productDetails.name === "") {
+  } else if (to.name === 'Delivery' && productDetailsEmpty) {
     next('/');
-  } else {
-    next();
-  }
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.name === 'Product' && store.state.productDetails.name === "") {
+  } else if (to.name === 'Product' && productDetailsEmpty) {
     next('/');
   } else {
     next();

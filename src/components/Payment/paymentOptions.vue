@@ -13,18 +13,15 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      selectedPaymentMethod: null,
-    };
-  },
-  methods: {
-    emitPaymentMethod() {
-      this.$emit('selectPaymentMethod', this.selectedPaymentMethod);
-    }
-  }
+<script setup>
+import { ref, defineEmits } from 'vue';
+
+const selectedPaymentMethod = ref(null);
+
+const emit = defineEmits(['selectPaymentMethod']);
+
+const emitPaymentMethod = () => {
+  emit('selectPaymentMethod', selectedPaymentMethod.value);
 };
 </script>
 
@@ -33,7 +30,7 @@ export default {
   background-color: white;
   width: 100%;
   padding: 1% 2%;
-  border:2px solid #71c5a7;
+  border: 2px solid #71c5a7;
 }
 
 .payment-methods h2 {

@@ -67,71 +67,67 @@
     </v-card-actions>
   </v-card>
 </template>
+
 <script>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+
 export default {
   data: () => ({
     loading: false,
     selection: 1,
   }),
-
-  methods: {
-    reserve() {
-      this.loading = true;
-
-      setTimeout(() => (this.loading = false), 2000);
+  
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    img: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: String,
+      required: true,
+    },
+    code: {
+      type: Number,
+      required: true,
     },
   },
+
+  setup(props) {
+    const loading = ref(false);
+    const store = useStore();
+    const router = useRouter();
+
+    const reserve = () => {
+      loading.value = true;
+      setTimeout(() => {
+        store.dispatch("setProductDetails", {
+          name: props.name,
+          description: props.description,
+          price: props.price,
+          code: props.code,
+        });
+        loading.value = false;
+        router.push({ name: "Product", params: { code: props.code } });
+      }, 2000);
+    };
+
+    return {
+      loading,
+      reserve,
+    };
+  },
 };
 </script>
-
-<script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { useStore } from 'vuex';
-
-const loading = ref(false);
-const store = useStore();
-const router = useRouter(); 
-
-
-const props = defineProps({
-  name: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  img: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: String,
-    required: true,
-  },
-  code: {
-    type: Number,
-    required: true,
-  },
-});
-
-const reserve = () => {
-  loading.value = true;
-  setTimeout(() => {
-    store.dispatch('setProductDetails', {
-      name: props.name,
-      description: props.description,
-      price: props.price,
-      code: props.code,
-    });
-    loading.value = false;
-    router.push({ name: 'Product', params: { code: props.code } });
-  }, 2000);
-};
-</script>
-
 
 <style scoped>
 .product-card__description {

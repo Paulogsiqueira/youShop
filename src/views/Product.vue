@@ -33,13 +33,13 @@
   </div>
 </template>
     
-  <script setup>
-import { ref, onMounted } from 'vue';
+<script setup>
+import { ref, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import axios from "axios";
 
 const router = useRouter();
 const route = useRoute();
-
 
 const handleDeliveryRedirect = () => {
   router.push("/delivery");
@@ -58,12 +58,10 @@ const productItem = ref({
 
 const fetchProductDetails = async (code) => {
   try {
-    const response = await fetch(`https://api.deepspacestore.com/offers/${code}`);
-    if (!response.ok) {
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
-    }
-    const data = await response.json();
-    productItem.value = data;
+    const response = await axios.get(
+      `https://api.deepspacestore.com/offers/${code}`
+    );
+    productItem.value = response.data;
   } catch (error) {
     console.error("Failed to fetch product details:", error);
   }
@@ -71,7 +69,7 @@ const fetchProductDetails = async (code) => {
 
 onMounted(() => {
   const code = route.params.code;
-  fetchProductDetails(code); 
+  fetchProductDetails(code);
 });
 
 const updateMainImage = (imageUrl) => {

@@ -77,7 +77,7 @@ const handlePaymentMethodSelection = (method) => {
 
   .cart-card {
     width: 60%;
-    margin-left:2%;
+    margin-left: 2%;
     margin-top: 4%;
   }
 
@@ -86,5 +86,4 @@ const handlePaymentMethodSelection = (method) => {
     align-items: center;
   }
 }
-
 </style>

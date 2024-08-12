@@ -34,7 +34,7 @@ import { computed } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
-const productDetails = computed(() => store.state.productDetails);
+const productDetails = store.state.productDetails;
 const purchaseDetails = computed(() => store.state.purchaseDetails);
 
 </script>

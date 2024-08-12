@@ -1,6 +1,10 @@
 <template>
   <div class="products-container">
-    <div v-for="(product, index) in productsList" :key="index" class="product-item">
+    <div
+      v-for="(product, index) in productsList"
+      :key="index"
+      class="product-item"
+    >
       <ProductCard
         :name="product.name"
         :description="product.description"
@@ -13,15 +17,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import ProductCard from '@/components/Cards/productCard.vue';
+import { ref, onMounted } from "vue";
+import axios from "axios";
+import ProductCard from "@/components/Cards/productCard.vue";
 
 const productsList = ref([]);
 
 const fetchProducts = async () => {
-  const response = await fetch('https://api.deepspacestore.com/offers')
-  const products = await response.json()
-  productsList.value = products
+  try {
+    const response = await axios.get("https://api.deepspacestore.com/offers");
+    productsList.value = response.data;
+  } catch (error) {
+    console.error("Erro ao buscar produtos:", error);
+  }
 };
 
 onMounted(() => {

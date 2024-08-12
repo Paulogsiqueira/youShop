@@ -64,7 +64,13 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { isValidCPF, isValidCNPJ } from "@/utils/validators";
+import {
+  validateCPFCNPJ,
+  validateValidity,
+  validateCardHolderName,
+  validateNumber,
+  validateCode,
+} from "@/utils/validators";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import axios from "axios";
@@ -73,8 +79,7 @@ const router = useRouter();
 const store = useStore();
 
 const productDetails = computed(() => store.state.productDetails);
-const purchaseDetails = computed(() => store.state.purchaseDetails);
-const paymentDetails = computed(() => store.state.paymentDetails);
+const purchaseDetails = store.state.purchaseDetails;
 
 const titular = ref("");
 const cpf = ref("");
@@ -100,46 +105,10 @@ const validityError = ref("");
 const codeError = ref("");
 const portionError = ref("");
 
-const validateTitular = (value) => {
-  return /^[A-Za-z\s]+$/.test(value) && value.length > 10;
-};
-
-const validateCPF = (value) => {
-  if (value.length === 11) {
-    return isValidCPF(value);
-  } else if (value.length === 14) {
-    return isValidCNPJ(value);
-  } else {
-    return false;
-  }
-};
-
-const validateNumber = (value) => {
-  return /^\d{16}$/.test(value);
-};
-
-const validateValidity = (value) => {
-  const [month, year] = value.split("/");
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth() + 1;
-  const inputYear = parseInt(year, 10);
-  const inputMonth = parseInt(month, 10);
-
-  return (
-    /^\d{2}\/\d{4}$/.test(value) &&
-    (inputYear > currentYear ||
-      (inputYear === currentYear && inputMonth > currentMonth))
-  );
-};
-
-const validateCode = (value) => {
-  return /^\d{3}$/.test(value);
-};
-
 const submit = async () => {
   let valid = true;
 
-  if (!validateTitular(titular.value)) {
+  if (!validateCardHolderName(titular.value)) {
     titularError.value =
       "O nome deve conter apenas letras e ter mais de 10 caracteres.";
     valid = false;
@@ -147,7 +116,7 @@ const submit = async () => {
     titularError.value = "";
   }
 
-  if (!validateCPF(cpf.value)) {
+  if (!validateCPFCNPJ(cpf.value)) {
     cpfError.value = "Digite um CPF ou CNPJ válido.";
     valid = false;
   } else {
@@ -213,16 +182,15 @@ const submit = async () => {
       }
     );
 
-    if(response.data.error == "CPF inválido"){
+    if (response.data.error == "CPF_INVALIDO") {
       cpfError.value = "Digite um CPF ou CNPJ válido.";
       alert("CPF inválido");
-      return
-    }else{
-      cpfError.value = "";
-      const orderCode = response.data.order.orderId;
-      await store.dispatch("updateOrderCode", orderCode);
+      return;
     }
 
+    cpfError.value = "";
+    const orderCode = response.data.order.orderId;
+    await store.dispatch("updateOrderCode", orderCode);
     await store.dispatch("updatePurchaseComplete", true);
     router.push("/purchaseCompleted");
   }

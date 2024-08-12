@@ -1,13 +1,15 @@
 <template>
   <v-card class="purchase-card">
     <v-card-item class="purchase-title">
-      <v-card-title > Resumo do Pedido </v-card-title>
+      <v-card-title> Resumo do Pedido </v-card-title>
     </v-card-item>
 
     <v-card-text>
       <div>
         <div class="purchase-resume">
-          <p><strong>Número do Pedido: {{ orderCode }}</strong></p>
+          <p>
+            <strong>Número do Pedido: {{ orderCode }}</strong>
+          </p>
           <p><strong>Produto:</strong>{{ productDetails.name }}</p>
           <p>
             <strong>Descrição do Produto:</strong
@@ -81,9 +83,11 @@
     </v-card-text>
 
     <v-row class="submit-row">
-      <v-btn class="me-4 submit-btn" @click="handleHomeRedirect">Tela de Início</v-btn>
+      <v-btn class="me-4 submit-btn" @click="handleHomeRedirect"
+        >Tela de Início</v-btn
+      >
     </v-row>
-    <purchaseCompletedModal/>
+    <purchaseCompletedModal />
   </v-card>
 </template>
 
@@ -91,14 +95,14 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import purchaseCompletedModal from './Modal/purchaseCompletedModal.vue';
+import purchaseCompletedModal from "./Modal/purchaseCompletedModal.vue";
 
 const router = useRouter();
 const store = useStore();
-const productDetails = computed(() => store.state.productDetails);
-const purchaseDetails = computed(() => store.state.purchaseDetails);
+const productDetails = store.state.productDetails;
+const purchaseDetails = store.state.purchaseDetails;
 const paymentDetails = computed(() => store.state.paymentDetails);
-const orderCode = computed(() => store.state.orderCode);
+const orderCode =  store.state.orderCode;
 
 const statusText = computed(() => {
   return paymentDetails.value.method === "Boleto Bancário"
@@ -114,14 +118,13 @@ const statusClass = computed(() => {
 });
 
 const handleHomeRedirect = () => {
-      router.push("/");
+  router.push("/");
 };
-
 </script>
 
 <style scoped>
-.purchase-title{
-  display:flex;
+.purchase-title {
+  display: flex;
   justify-content: center;
 }
 

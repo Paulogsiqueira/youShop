@@ -14,7 +14,7 @@
 
         <v-col cols="12" md="4">
           <v-text-field
-          id="phone"
+            id="phone"
             v-model="phone"
             :counter="11"
             :error-messages="phoneError"
@@ -25,7 +25,7 @@
 
         <v-col cols="12" md="4">
           <v-text-field
-          id="email"
+            id="email"
             v-model="email"
             :error-messages="emailError"
             label="E-mail"
@@ -36,7 +36,7 @@
       <v-row>
         <v-col cols="12" md="4">
           <v-text-field
-          id="cep"
+            id="cep"
             v-model="cep"
             :error-messages="cepError"
             label="CEP"
