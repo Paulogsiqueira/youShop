@@ -24,3 +24,4 @@ Este projeto é um site de compras desenvolvido com Vue 3 e suas principais bibl
 - **MSW**: Biblioteca para simulação de APIs.
 
 
+Deploy: https://you-shop-alpha.vercel.app/
